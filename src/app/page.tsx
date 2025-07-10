@@ -35,7 +35,7 @@ export default function Home() {
       scrollTrigger: {
         trigger: textSection.current,
         start: "top top",
-        end: "+=200%",
+        end: "+=300%",
         scrub: 0.03,
         pin: true,
         pinSpacing: false,
@@ -43,16 +43,32 @@ export default function Home() {
       },
     });
 
-    tl.to(
-      split.words,
-      {
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.5,
-        ease: "power2.out",
-      },
-      0 // Start immediately
-    )
+    tl
+      // .fromTo(
+      //   textSection.current,
+      //   {
+      //     opacity: 0,
+      //     y: 1000,
+      //   },
+      //   {
+      //     opacity: 1,
+      //     duration: 5,
+      //     y: 0,
+      //     ease: "power2.out",
+      //   },
+      //   0
+      // )
+      .to(
+        split.words,
+        {
+          // delay: 1,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.5,
+          ease: "power2.out",
+        },
+        0 // Start immediately
+      )
       .fromTo(
         [
           imgWrapper.current,
@@ -83,11 +99,11 @@ export default function Home() {
         textSection.current,
         {
           opacity: 0,
-          duration: 10,
+          duration: 20,
           delay: 40,
           ease: "power2.out",
         },
-        0
+        1
       );
   });
 
@@ -158,7 +174,7 @@ export default function Home() {
             <Image
               alt=""
               ref={image1}
-              className="relative translate-x-[-20%] z-30 scale-110 shadow"
+              className="relative translate-x-[-20%] z-20 scale-110 shadow"
               src={"/Travel_Tower.jpg"}
               width={500}
               height={500}
@@ -182,7 +198,7 @@ export default function Home() {
             <Image
               alt=""
               ref={image4}
-              className="top-10 left-10 translate-x-[40vw] shadow z-30"
+              className="top-10 left-10 translate-x-[40vw] shadow z-20"
               src={"/Travel_Tower.jpg"}
               width={500}
               height={500}

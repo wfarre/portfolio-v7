@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import Card from "../../ui/Card";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+import { start } from "repl";
+import gsap from "gsap";
 const projects = [
   {
     picture: "/assets/images/projects/extensions.png",
@@ -112,19 +116,51 @@ const projects = [
   },
 ];
 
+gsap.registerPlugin(ScrollTrigger);
+
 const ProjectSection = () => {
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const projectsRef = useRef(null);
+  const cardRef = useRef(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      ScrollTrigger: {
+        trigger: projectsRef.current,
+        start: "center center",
+        end: "bottom bottom",
+        scrub: 0.03,
+      },
+    });
+
+    tl.fromTo(
+      [cardRef.current],
+      {
+        opacity: 0,
+        y: -200,
+      },
+      {
+        opacity: 1,
+        duration: 5,
+        stagger: 0.5,
+        ease: "power2.out",
+      }
+    );
+  });
+
   return (
-    <section className="pb-50">
-      <header className="mb-6">
+    <section ref={sectionRef} className="relative pb-50 bg-black z-30 py-40">
+      <header ref={headerRef} className="mb-6 z-50">
         <h2 className="text-3xl font-bold">Selected projects</h2>
-        <p className="mt-2 max-w-2xl">
+        <p className="mt-2 max-w-2xl text-white/75">
           Here are a selection of my most recent projects. My usual stack for
           the frontend is: Sass, React, TailwindCSS and Typescript.
         </p>
       </header>
-      <ul className=" grid grid-cols-2 gap-8">
+      <ul className=" grid grid-cols-2 gap-8" ref={projectsRef}>
         {projects.map((project, index) => (
-          <li key={index} className="">
+          <li ref={cardRef} key={index} className="">
             <Card
               links={project.links}
               image={project.picture}

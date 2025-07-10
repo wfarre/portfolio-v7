@@ -11,7 +11,6 @@ gsap.registerPlugin(SplitText, ScrollTrigger, ScrollSmoother);
 const HeroSection = () => {
   const title = useRef(null);
   const sectionRef = useRef(null);
-
   const buttonWrapper = useRef(null);
 
   useGSAP(() => {
