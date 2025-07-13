@@ -2,112 +2,36 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollSmoother, ScrollTrigger, SplitText } from "gsap/all";
-import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import HeroSection from "./components/layout/HeroSection";
 import Navbar from "./components/layout/Navbar";
 import ProjectSection from "./components/layout/sections/ProjectSection";
+import AboutSection from "./components/layout/sections/AboutSection";
+import FormInput from "./components/ui/FormInput";
+import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faGithub,
+  faInstagram,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 gsap.registerPlugin(SplitText, ScrollTrigger, ScrollSmoother);
 
 export default function Home() {
-  const textSection = useRef(null);
-  const textWrapper = useRef(null);
-  const text = useRef(null);
-  const image1 = useRef(null);
-  const image2 = useRef(null);
-  const image3 = useRef(null);
-  const image4 = useRef(null);
-  const image5 = useRef(null);
-  const imgWrapper = useRef(null);
   const scrollWrapper = useRef(null);
   const scrollContent = useRef(null);
 
-  useGSAP(() => {});
-
-  useGSAP(() => {
-    if (!text.current || !textSection.current) return;
-
-    const split = SplitText.create(text.current, {
-      type: "words",
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: textSection.current,
-        start: "top top",
-        end: "+=300%",
-        scrub: 0.03,
-        pin: true,
-        pinSpacing: false,
-        markers: true,
-      },
-    });
-
-    tl
-      // .fromTo(
-      //   textSection.current,
-      //   {
-      //     opacity: 0,
-      //     y: 1000,
-      //   },
-      //   {
-      //     opacity: 1,
-      //     duration: 5,
-      //     y: 0,
-      //     ease: "power2.out",
-      //   },
-      //   0
-      // )
-      .to(
-        split.words,
-        {
-          // delay: 1,
-          opacity: 0,
-          duration: 0.5,
-          stagger: 0.5,
-          ease: "power2.out",
-        },
-        0 // Start immediately
-      )
-      .fromTo(
-        [
-          imgWrapper.current,
-          image1.current,
-          image2.current,
-          image3.current,
-          image4.current,
-          image5.current,
-        ],
-        {
-          y: 500,
-        },
-        {
-          duration: 20,
-          y: -700,
-          stagger: {
-            // grid: [7, 15],
-            each: 0.1,
-            grid: "auto",
-            from: "start",
-            amount: 20,
-          },
-          ease: "ease.out",
-        },
-        0 // Start at the same time
-      )
-      .to(
-        textSection.current,
-        {
-          opacity: 0,
-          duration: 20,
-          delay: 40,
-          ease: "power2.out",
-        },
-        1
-      );
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    message: "",
   });
 
-  ScrollTrigger.refresh();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(contactForm);
+  };
 
   useGSAP(() => {
     ScrollSmoother.create({
@@ -120,102 +44,88 @@ export default function Home() {
     });
   });
   return (
-    <div
-      ref={scrollWrapper}
-      id="scroll-wrapper"
-      className="wrapper container mx-auto"
-    >
-      <Navbar />
-      <main
-        ref={scrollContent}
-        id="scroll-content"
-        className="overflow-x-hidden"
-      >
-        <HeroSection />
-        <section
-          ref={textSection}
-          className="py-40 my-40 mx-auto px-25 relative overflow-hidden text-center"
-        >
-          <div
-            ref={textWrapper}
-            className="relative text-3xl max-w-[70%] mx-auto   leading-12 z-10"
-          >
-            <div className="absolute w-full top-0 left-0 mx-auto bg-gradient-to-br from-pink-500 to-purple-500 bg-clip-text text-transparent z-0">
-              <p>
-                Hi 👋, I am William, a French frontend developer passionate
-                about building beautiful and intuitive web applications. I
-                transform complex ideas into seamless and delightful user
-                experiences.
-              </p>
-              <p className="mt-4">
-                I am currently based in Kaohsiung, Taiwan, but I have lived in
-                Japan for about 5 years: Kyoto, Osaka and Matsue.
-              </p>
-            </div>
-
-            <div
-              ref={text}
-              className="text-gray-400 absolute w-full top-0 left-0 z-0"
-              aria-hidden={true}
-            >
-              <p>
-                Hi 👋, I am William, a French frontend developer passionate
-                about building beautiful and intuitive web applications. I
-                transform complex ideas into seamless and delightful user
-                experiences.
-              </p>
-              <p className="mt-4">
-                I am currently based in Kaohsiung, Taiwan, but I have lived in
-                Japan for about 5 years: Kyoto, Osaka and Matsue.
-              </p>
-            </div>
+    <div ref={scrollWrapper} id="scroll-wrapper" className="mx-auto">
+      <div className="wrapper">
+        <Navbar />
+      </div>
+      <div ref={scrollContent} id="scroll-content" className="pb-[96px]">
+        <main className="overflow-x-hidden">
+          <div className="wrapper">
+            <HeroSection />
+            <AboutSection />
+            <ProjectSection />
+            <section className="relative my-40 z-50">
+              <div className="bg-white rounded-2xl p-8 text-black">
+                <form
+                  action=""
+                  className="flex flex-col gap-6"
+                  onSubmit={handleSubmit}
+                >
+                  <FormInput
+                    type="text"
+                    id="name"
+                    value={contactForm.name}
+                    label="Name"
+                    onChange={(e) =>
+                      setContactForm({ ...contactForm, name: e.target.value })
+                    }
+                  />
+                  <FormInput
+                    type="email"
+                    id="email"
+                    value={contactForm.email}
+                    label="email"
+                    onChange={(e) =>
+                      setContactForm({ ...contactForm, email: e.target.value })
+                    }
+                  />
+                  <FormInput
+                    type="textarea"
+                    id="message"
+                    value={contactForm.message}
+                    label="Message"
+                    onChange={(e) =>
+                      setContactForm({
+                        ...contactForm,
+                        message: e.target.value,
+                      })
+                    }
+                  />
+                  <button className=" text-white font-title text-2xl bg-gradient-to-br from-pink-500 to-purple-500 h-12 px-8 rounded-xl font-bold uppercase hover:scale-110 transition-all duration-300 cursor-pointer">
+                    Say Hi!
+                  </button>
+                </form>
+              </div>
+            </section>
           </div>
-          <div ref={imgWrapper} className="relative">
-            <Image
-              alt=""
-              ref={image1}
-              className="relative translate-x-[-20%] z-20 scale-110 shadow"
-              src={"/Travel_Tower.jpg"}
-              width={500}
-              height={500}
-            />
-            <Image
-              alt=""
-              ref={image2}
-              className=" relative translate-x-[180%] z-0 scale-80 shadow"
-              src={"/Travel_Adventure_Door.jpg"}
-              width={500}
-              height={500}
-            />
-            <Image
-              alt=""
-              ref={image3}
-              className="relative translate-x-[25%] -z-20 shadow"
-              src={"/Travel_OpenMountain.jpg"}
-              width={500}
-              height={500}
-            />
-            <Image
-              alt=""
-              ref={image4}
-              className="top-10 left-10 translate-x-[40vw] shadow z-20"
-              src={"/Travel_Tower.jpg"}
-              width={500}
-              height={500}
-            />
-            <Image
-              alt=""
-              ref={image5}
-              className="top-2 left-2 translate-x-[50%] shadow -z-10"
-              src={"/Travel_Tower.jpg"}
-              width={500}
-              height={500}
-            />
-          </div>
-        </section>
-        <ProjectSection />
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
+        </main>
+        <footer className="row-start-3 flex flex-col gap-[24px] flex-wrap items-center justify-center pt-40">
+          <h2 className="font-title text-2xl">William Farré</h2>
+          <ul className="flex gap-8">
+            <li>
+              <a href="#">
+                <FontAwesomeIcon className="text-2xl" icon={faGithub} />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <FontAwesomeIcon className="text-2xl" icon={faFacebook} />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <FontAwesomeIcon className="text-2xl" icon={faLinkedin} />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <FontAwesomeIcon className="text-2xl" icon={faInstagram} />
+              </a>
+            </li>
+          </ul>
+          <p>©️ 2025 All rights reserved. Coded by William Farré</p>
+        </footer>
+      </div>
     </div>
   );
 }

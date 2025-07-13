@@ -18,13 +18,7 @@ const Card = (props: CardProps) => {
   return (
     <article className="text-white">
       <div className=" aspect-video w-full relative rounded-2xl overflow-hidden group">
-        <Image
-          alt=""
-          className=""
-          src={props.image}
-          fill={true}
-          objectFit="cover"
-        />
+        <Image alt="" className="" src={props.image} fill={true} sizes="100%" />
         <div className="relative h-full w-full opacity-0 group-hover:opacity-100 transition-all duration-300">
           <div
             style={{
@@ -58,7 +52,7 @@ const Card = (props: CardProps) => {
           <h3 className="text-2xl font-bold ">{props.title}</h3>
           <p className="leading-8 text-sm">Completed in 2022</p>
 
-          <ul className="flex gap-4 mt-4">
+          <ul className="flex gap-4 mt-4 flex-wrap">
             {props.tags.map((tag, index) => (
               <li
                 style={{ backgroundColor: props.color }}

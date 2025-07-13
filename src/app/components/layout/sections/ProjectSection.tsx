@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import Card from "../../ui/Card";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-import { start } from "repl";
 import gsap from "gsap";
 const projects = [
   {
@@ -126,39 +125,65 @@ const ProjectSection = () => {
 
   useGSAP(() => {
     const tl = gsap.timeline({
-      ScrollTrigger: {
-        trigger: projectsRef.current,
-        start: "center center",
-        end: "bottom bottom",
-        scrub: 0.03,
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        // end: "+=300% bottom",
+        scrub: 0.05,
+        pin: true,
+        pinSpacing: false,
+        markers: true,
       },
     });
 
-    tl.fromTo(
-      [cardRef.current],
+    tl.to(
+      headerRef.current,
       {
-        opacity: 0,
-        y: -200,
+        x: 0,
+        y: 0,
       },
-      {
-        opacity: 1,
-        duration: 5,
-        stagger: 0.5,
-        ease: "power2.out",
-      }
-    );
+      0
+    )
+      .to(
+        projectsRef.current,
+        {
+          y: "-100%",
+          duration: 20,
+        },
+        0
+      )
+      .to(
+        sectionRef.current,
+        {
+          opacity: 0,
+          duration: 5,
+          delay: 15,
+          ease: "power2.out",
+          // delay: "-80%",
+        },
+        1
+      );
   });
 
   return (
-    <section ref={sectionRef} className="relative pb-50 bg-black z-30 py-40">
-      <header ref={headerRef} className="mb-6 z-50">
+    <section
+      ref={sectionRef}
+      // className="relative pb-50 bg-black z-30"
+      className="relative my-40 bg-black z-30"
+    >
+      {/* <Container ref={sectionRef}> */}
+      <header
+        ref={headerRef}
+        className="relative pt-20 pb-30 bg-gradient-to-b  from-black from-60% to-transparent to-75% z-40"
+        // className="relative pb-30 bg-gradient-to-b  from-black from-60% to-transparent to-75% z-40"
+      >
         <h2 className="text-3xl font-bold">Selected projects</h2>
         <p className="mt-2 max-w-2xl text-white/75">
           Here are a selection of my most recent projects. My usual stack for
           the frontend is: Sass, React, TailwindCSS and Typescript.
         </p>
       </header>
-      <ul className=" grid grid-cols-2 gap-8" ref={projectsRef}>
+      <ul className=" grid lg:grid-cols-2 gap-8" ref={projectsRef}>
         {projects.map((project, index) => (
           <li ref={cardRef} key={index} className="">
             <Card
@@ -173,6 +198,7 @@ const ProjectSection = () => {
           </li>
         ))}
       </ul>
+      {/* </Container> */}
     </section>
   );
 };

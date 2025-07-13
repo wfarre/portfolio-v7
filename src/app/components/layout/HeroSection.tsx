@@ -55,13 +55,13 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-[calc(100vh-96px)] flex  w-full py-40 px-25 relative flex-col items-center justify-center"
+      className="h-[calc(100vh-96px)] flex  w-full lg:px-25 relative flex-col items-center justify-center"
     >
       <h1
         ref={title}
-        className="text-8xl uppercase font-title tracking-widest leading-28 text-center"
+        className="text-6xl lg:text-8xl uppercase font-title tracking-widest lg:leading-28 text-center"
       >
-        crafring engaging & <br /> responsive UI.
+        crafting engaging & <br /> responsive UI.
       </h1>
       <div
         ref={buttonWrapper}
