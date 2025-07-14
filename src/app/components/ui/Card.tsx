@@ -1,3 +1,6 @@
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import React from "react";
 
@@ -31,6 +34,7 @@ const Card = (props: CardProps) => {
               <a
                 className="after:h-0.5 after:w-full after:bg-white after:absolute  after:bottom-0 after:left-0 after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100"
                 href={props.links.live}
+                target="_blank"
               >
                 VIEW LIVE
               </a>
@@ -39,6 +43,7 @@ const Card = (props: CardProps) => {
               <a
                 className="after:h-0.5 after:w-full after:bg-white after:absolute  after:bottom-0 after:left-0 after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100"
                 href={props.links.github}
+                target="_blank"
               >
                 VIEW CODE
               </a>
@@ -47,16 +52,16 @@ const Card = (props: CardProps) => {
         </div>
       </div>
 
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between mt-4 gap-2">
         <div>
-          <h3 className="text-2xl font-bold ">{props.title}</h3>
-          <p className="leading-8 text-sm">Completed in 2022</p>
+          <h3 className="text-xl md:text-2xl font-bold ">{props.title}</h3>
+          <p className="text-sm">Completed in 2022</p>
 
           <ul className="flex gap-4 mt-4 flex-wrap">
             {props.tags.map((tag, index) => (
               <li
                 style={{ backgroundColor: props.color }}
-                className={`px-2 text-sm rounded-4xl font-bold`}
+                className={`px-2 text-xs md:text-sm rounded-4xl font-bold`}
                 key={index}
               >
                 {tag}
@@ -64,7 +69,14 @@ const Card = (props: CardProps) => {
             ))}
           </ul>
         </div>
-        <div></div>
+        <div className="flex gap-4 self-end lg:hidden">
+          <a href={props.links.github} target="_blank">
+            <FontAwesomeIcon className="text-2xl" icon={faGithub} />
+          </a>
+          <a href={props.links.live} target="_blank">
+            <FontAwesomeIcon className="text-2xl" icon={faGlobe} />
+          </a>
+        </div>
       </div>
     </article>
   );

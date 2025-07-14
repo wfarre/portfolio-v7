@@ -4,7 +4,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollSmoother, ScrollTrigger, SplitText } from "gsap/all";
 import React, { useRef } from "react";
-import Marquee from "../ui/Marquee";
+import Marquee from "../../ui/Marquee";
+import Button from "../../ui/Button";
 
 gsap.registerPlugin(SplitText, ScrollTrigger, ScrollSmoother);
 
@@ -45,8 +46,6 @@ const HeroSection = () => {
       },
       stagger: {
         amount: 0.5,
-        // repeat: -1,
-        // yoyo: true,
         from: "random",
       },
     });
@@ -59,22 +58,28 @@ const HeroSection = () => {
     >
       <h1
         ref={title}
-        className="text-6xl lg:text-8xl uppercase font-title tracking-widest lg:leading-28 text-center"
+        className="text-5xl lg:text-8xl uppercase font-title tracking-widest lg:leading-28 text-center"
       >
         crafting engaging & <br /> responsive UI.
       </h1>
       <div
         ref={buttonWrapper}
-        className="flex gap-4 mt-10 items-center justify-center"
+        className="flex gap-4 mt-10 items-center justify-center z-10"
       >
-        <button className=" text-white font-title text-2xl bg-gradient-to-br from-pink-500 to-purple-500 h-12 px-8 rounded-xl font-bold uppercase hover:scale-110 transition-all duration-300 cursor-pointer">
-          Say Hi!
-        </button>
-        <button className="bg-white relative font-title text-2xl bg-clip-padding before:bg-gradient-to-br before:from-pink-500 before:to-purple-500 before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 h-12 px-8 rounded-xl font-bold uppercase border-[2px] border-transparent before:m-[-2px] before:rounded-xl  before:z-[-1] hover:bg-transparent transition-all duration-300 cursor-pointer hover:scale-110 group ">
-          <span className="bg-gradient-to-br from-pink-500 to-purple-500 text-transparent bg-clip-text group-hover:text-white transition-all duration-300">
-            Download CV
-          </span>
-        </button>
+        <Button
+          text="Say Hi!"
+          styleType="primary"
+          onClick={() => {
+            console.log("click");
+          }}
+        />
+        <Button
+          text="Download CV"
+          styleType="secondary"
+          onClick={() => {
+            console.log("click");
+          }}
+        />
       </div>
       <Marquee />
     </section>

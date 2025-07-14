@@ -50,18 +50,21 @@ const Navbar = () => {
           William Farré
         </a>
 
-        <ul ref={navRef} className="flex gap-8 ml-auto">
+        <ul
+          ref={navRef}
+          className="flex gap-8 ml-auto text-base font-bold font-title md:text-xl"
+        >
           <li>
             <a href="#scroll-content">Home</a>
           </li>
           <li>
-            <a href="#scroll-content">About</a>
+            <a href="#about">About</a>
           </li>
           <li>
-            <a href="#scroll-content">Projects</a>
+            <a href="#projects">Projects</a>
           </li>
           <li>
-            <a href="#scroll-content">Contact</a>
+            <a href="#contact">Contact</a>
           </li>
         </ul>
       </nav>

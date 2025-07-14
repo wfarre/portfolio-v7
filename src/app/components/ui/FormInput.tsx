@@ -5,6 +5,7 @@ interface Props {
   label: string;
   type: "textarea" | "text" | "email";
   value: string;
+  error?: string;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -19,7 +20,7 @@ const FormInput = (props: Props) => {
 
   return (
     <div className="flex flex-col">
-      <label className="mb-2" htmlFor={props.id}>
+      <label className="mb-2 font-bold text-xs md:text-sm" htmlFor={props.id}>
         {props.label}
       </label>
       {props.type === "textarea" ? (
@@ -37,6 +38,9 @@ const FormInput = (props: Props) => {
           value={props.value}
           onChange={handleChange}
         />
+      )}
+      {props.error && (
+        <span className="text-red-500 text-xs">{props.error}</span>
       )}
     </div>
   );

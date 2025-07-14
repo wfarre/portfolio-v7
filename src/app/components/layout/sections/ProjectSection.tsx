@@ -128,10 +128,10 @@ const ProjectSection = () => {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top top",
-        // end: "+=300% bottom",
+        end: "+=100%",
         scrub: 0.05,
         pin: true,
-        pinSpacing: false,
+        // pinSpacing: false,
         markers: true,
       },
     });
@@ -159,7 +159,6 @@ const ProjectSection = () => {
           duration: 5,
           delay: 15,
           ease: "power2.out",
-          // delay: "-80%",
         },
         1
       );
@@ -167,23 +166,21 @@ const ProjectSection = () => {
 
   return (
     <section
+      id="projects"
       ref={sectionRef}
-      // className="relative pb-50 bg-black z-30"
       className="relative my-40 bg-black z-30"
     >
-      {/* <Container ref={sectionRef}> */}
       <header
         ref={headerRef}
         className="relative pt-20 pb-30 bg-gradient-to-b  from-black from-60% to-transparent to-75% z-40"
-        // className="relative pb-30 bg-gradient-to-b  from-black from-60% to-transparent to-75% z-40"
       >
-        <h2 className="text-3xl font-bold">Selected projects</h2>
-        <p className="mt-2 max-w-2xl text-white/75">
+        <h2 className="text-2xl md:text-3xl font-bold">Selected projects</h2>
+        <p className="mt-2 max-w-2xl text-white/75 text-sm">
           Here are a selection of my most recent projects. My usual stack for
           the frontend is: Sass, React, TailwindCSS and Typescript.
         </p>
       </header>
-      <ul className=" grid lg:grid-cols-2 gap-8" ref={projectsRef}>
+      <ul className=" grid lg:grid-cols-2 gap-8 " ref={projectsRef}>
         {projects.map((project, index) => (
           <li ref={cardRef} key={index} className="">
             <Card
@@ -198,7 +195,6 @@ const ProjectSection = () => {
           </li>
         ))}
       </ul>
-      {/* </Container> */}
     </section>
   );
 };
