@@ -35,6 +35,10 @@ const Marquee = () => {
   return (
     <div
       ref={marqueeWrapper}
+      role="presentation"
+      aria-hidden={true}
+      tabIndex={-1}
+      style={{ willChange: "transform" }}
       className="absolute bottom-0 left-0 w-full overflow-hidden flex"
     >
       <div className="absolute bg-gradient-to-r from-black from-50% to-transparent to-70% h-25 w-14  md:h-50 md:w-28  top-0 left-0 z-10"></div>
