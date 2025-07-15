@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollSmoother, ScrollTrigger, SplitText } from "gsap/all";
 import React, { useRef } from "react";
 import Marquee from "../../ui/Marquee";
-import Button from "../../ui/Button";
+import LinkButton from "../../ui/LinkButton";
 
 gsap.registerPlugin(SplitText, ScrollTrigger, ScrollSmoother);
 
@@ -42,7 +42,7 @@ const HeroSection = () => {
         toggleActions: "play reverse reverse pause",
         scrub: 0.5,
         pin: true,
-        markers: true,
+        markers: false,
       },
       stagger: {
         amount: 0.5,
@@ -66,19 +66,12 @@ const HeroSection = () => {
         ref={buttonWrapper}
         className="flex gap-4 mt-10 items-center justify-center z-20"
       >
-        <Button
-          text="Say Hi!"
-          styleType="primary"
-          onClick={() => {
-            console.log("click");
-          }}
-        />
-        <Button
+        <LinkButton text="Say Hi!" styleType="primary" link="#contact" />
+        <LinkButton
           text="Download CV"
           styleType="secondary"
-          onClick={() => {
-            console.log("click");
-          }}
+          link="/assets/resume_WF.pdf"
+          type="file"
         />
       </div>
       <Marquee />

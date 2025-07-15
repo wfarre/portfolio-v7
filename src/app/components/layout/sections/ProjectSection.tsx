@@ -131,8 +131,8 @@ const ProjectSection = () => {
         end: "+=100%",
         scrub: 0.05,
         pin: true,
-        // pinSpacing: false,
-        markers: true,
+        pinSpacing: false,
+        markers: false,
       },
     });
 
@@ -172,7 +172,7 @@ const ProjectSection = () => {
     >
       <header
         ref={headerRef}
-        className="relative pt-20 pb-30 bg-gradient-to-b  from-black from-60% to-transparent to-75% z-40"
+        className="relative pt-14 lg:pt-20 pb-30 bg-gradient-to-b  from-black from-60% to-transparent to-75% z-40"
       >
         <h2 className="text-2xl md:text-3xl font-bold">Selected projects</h2>
         <p className="mt-2 max-w-2xl text-white/75 text-sm">

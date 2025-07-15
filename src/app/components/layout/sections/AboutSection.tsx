@@ -73,7 +73,7 @@ const AboutSection = () => {
         scrub: 0.05,
         pin: true,
         pinSpacing: false,
-        markers: true,
+        markers: false,
       },
     });
 
@@ -110,11 +110,11 @@ const AboutSection = () => {
     <section
       id="about"
       ref={textSection}
-      className="my-40 relative text-center py-40"
+      className="my-40 relative text-center py-20 md:py-40"
     >
       <div
         ref={textWrapper}
-        className=" text-lg relative lg:text-3xl lg:max-w-[70%] mx-auto  lg:leading-12 z-10 "
+        className=" text-base relative lg:text-3xl lg:max-w-[70%] mx-auto  lg:leading-12 z-10 "
       >
         <div className="absolute w-full top-0 left-0 mx-auto bg-gradient-to-br from-pink-500 to-purple-500 bg-clip-text text-transparent ">
           <p>

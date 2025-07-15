@@ -1,12 +1,7 @@
 import React, { useRef, useState } from "react";
 import FormInput from "../ui/FormInput";
-import emailjs from "@emailjs/browser";
 import { checkIfFormIsValid } from "@/app/utils/validation";
 import Button from "../ui/Button";
-
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string;
-const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_KEY as string;
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
 
 const ContactForm = () => {
   const [contactForm, setContactForm] = useState({
@@ -21,11 +16,9 @@ const ContactForm = () => {
     message: "",
   });
 
-  console.log(PUBLIC_KEY, SERVICE_ID, TEMPLATE_ID);
-
   const form = useRef<HTMLFormElement>(null);
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (!form.current) return;
 
@@ -34,21 +27,40 @@ const ContactForm = () => {
 
     if (!formIsValid) return;
 
-    console.log(contactForm);
-    emailjs
-      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
-        publicKey: PUBLIC_KEY,
-      })
-      .then(
-        () => {
-          console.log("SUCCESS!");
+    // emailjs
+    //   .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
+    //     publicKey: PUBLIC_KEY,
+    //   })
+    //   .then(
+    //     () => {
+    //       console.log("SUCCESS!");
+    //     },
+    //     (error) => {
+    //       console.log(error);
+    //       console.log("FAILED...", error.text);
+    //     }
+    //   );
+
+    try {
+      const res = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        (error) => {
-          console.log(error);
-          console.log("FAILED...", error.text);
-        }
-      );
+        body: JSON.stringify(contactForm),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        console.log("SUCCESS");
+      } else {
+        console.error("Email failed", data.error);
+      }
+    } catch (err) {
+      console.error("Request error:", err);
+    }
   };
+
   return (
     <form
       ref={form}

@@ -27,10 +27,8 @@ export default function Home() {
     });
   });
   return (
-    <>
-      {/* <div className="wrapper px-auto"> */}
+    <div className="font-body">
       <Navbar />
-      {/* </div> */}
       <div ref={scrollWrapper} id="scroll-wrapper" className="mx-auto">
         <div ref={scrollContent} id="scroll-content">
           <main className="overflow-x-hidden">
@@ -44,6 +42,6 @@ export default function Home() {
           <Footer />
         </div>
       </div>
-    </>
+    </div>
   );
 }

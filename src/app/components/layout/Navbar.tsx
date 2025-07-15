@@ -40,30 +40,31 @@ const Navbar = () => {
   });
 
   return (
-    <header ref={headerRef} className="z-50 fixed top-0 left-0 w-full wrapper ">
-      <nav className="flex justify-center h-24 items-center relative">
+    <header
+      ref={headerRef}
+      className="z-50 fixed top-0 left-0 w-full wrapper bg-black"
+    >
+      <nav className="flex justify-center h-14 md:h-24 items-center relative">
         <a
           ref={headerTitle}
           href="#"
           className="font-title text-xl md:text-2xl absolute h-full top-0 left-0 flex items-center"
         >
-          William Farré
+          <span className="hidden md:block">William Farré</span>
+          <span className="block md:hidden">WF</span>
         </a>
 
         <ul
           ref={navRef}
-          className="flex gap-8 ml-auto text-base font-bold font-title md:text-xl"
+          className="flex gap-2 md:gap-8 ml-auto text-xs uppercase font-bold md:text-base"
         >
-          <li>
-            <a href="#scroll-content">Home</a>
-          </li>
-          <li>
+          <li className="opacity-75 hover:opacity-100 transition-all duration-300">
             <a href="#about">About</a>
           </li>
-          <li>
+          <li className="opacity-75 hover:opacity-100 transition-all duration-300">
             <a href="#projects">Projects</a>
           </li>
-          <li>
+          <li className="opacity-75 hover:opacity-100 transition-all duration-300">
             <a href="#contact">Contact</a>
           </li>
         </ul>

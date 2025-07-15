@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
+import { Bebas_Neue, Montserrat } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const dmSerifDisplay = Bebas_Neue({
   variable: "--font-dm-serif-display",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const dmMonserrat = Montserrat({
+  variable: "--font-dm-montserrat",
   subsets: ["latin"],
   weight: "400",
 });
@@ -31,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${dmSerifDisplay.variable} antialiased bg-black text-white`}
+        className={`${dmSerifDisplay.variable} ${dmMonserrat.variable} antialiased bg-black text-white`}
       >
         {children}
       </body>
