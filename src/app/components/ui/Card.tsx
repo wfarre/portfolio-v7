@@ -25,8 +25,8 @@ const Card = (props: CardProps) => {
           alt={props.title}
           src={props.image}
           fill={true}
-          height={1920}
-          width={969}
+          sizes="100%"
+          className="object-cover w-full h-full absolute top-0 left-0"
         />
         <div className="relative h-full w-full opacity-0 group-hover:opacity-100 transition-all duration-300">
           <div
