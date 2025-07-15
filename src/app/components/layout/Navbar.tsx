@@ -40,12 +40,12 @@ const Navbar = () => {
   });
 
   return (
-    <header ref={headerRef} className="z-50 relative">
+    <header ref={headerRef} className="z-50 fixed top-0 left-0 w-full wrapper ">
       <nav className="flex justify-center h-24 items-center relative">
         <a
           ref={headerTitle}
           href="#"
-          className="font-title text-2xl absolute h-full top-0 left-0 flex items-center"
+          className="font-title text-xl md:text-2xl absolute h-full top-0 left-0 flex items-center"
         >
           William Farré
         </a>

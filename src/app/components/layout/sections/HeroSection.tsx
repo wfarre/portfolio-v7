@@ -54,7 +54,7 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-[calc(100vh-96px)] flex  w-full lg:px-25 relative flex-col items-center justify-center"
+      className="h-[100vh] flex  w-full lg:px-25 relative flex-col items-center justify-center pt-[96px]"
     >
       <h1
         ref={title}
@@ -64,7 +64,7 @@ const HeroSection = () => {
       </h1>
       <div
         ref={buttonWrapper}
-        className="flex gap-4 mt-10 items-center justify-center z-10"
+        className="flex gap-4 mt-10 items-center justify-center z-20"
       >
         <Button
           text="Say Hi!"

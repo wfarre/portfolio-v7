@@ -14,9 +14,9 @@ export default function Home() {
   const scrollWrapper = useRef(null);
   const scrollContent = useRef(null);
 
-  gsap.registerPlugin(ScrollSmoother);
-
   useGSAP(() => {
+    gsap.registerPlugin(ScrollSmoother);
+
     ScrollSmoother.create({
       wrapper: scrollWrapper.current,
       content: scrollContent.current,
@@ -27,21 +27,23 @@ export default function Home() {
     });
   });
   return (
-    <div ref={scrollWrapper} id="scroll-wrapper" className="mx-auto">
-      <div className="wrapper">
-        <Navbar />
+    <>
+      {/* <div className="wrapper px-auto"> */}
+      <Navbar />
+      {/* </div> */}
+      <div ref={scrollWrapper} id="scroll-wrapper" className="mx-auto">
+        <div ref={scrollContent} id="scroll-content">
+          <main className="overflow-x-hidden">
+            <div className="wrapper">
+              <HeroSection />
+              <AboutSection />
+              <ProjectSection />
+              <ContactSection />
+            </div>
+          </main>
+          <Footer />
+        </div>
       </div>
-      <div ref={scrollContent} id="scroll-content" className="pb-[96px]">
-        <main className="overflow-x-hidden">
-          <div className="wrapper">
-            <HeroSection />
-            <AboutSection />
-            <ProjectSection />
-            <ContactSection />
-          </div>
-        </main>
-        <Footer />
-      </div>
-    </div>
+    </>
   );
 }

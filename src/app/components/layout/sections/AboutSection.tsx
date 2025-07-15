@@ -84,7 +84,6 @@ const AboutSection = () => {
         duration: 20,
         stagger: 0.2,
         ease: "power2.out",
-        amount: split.words.length,
       },
       0 // Start immediately
     ).fromTo(
@@ -99,7 +98,6 @@ const AboutSection = () => {
           each: 0.5,
           grid: "auto",
           from: "start",
-          amount: images.length,
         },
         ease: "ease.out",
       },

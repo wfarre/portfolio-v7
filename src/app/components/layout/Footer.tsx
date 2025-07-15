@@ -51,7 +51,9 @@ export const Footer = () => {
           );
         })}
       </ul>
-      <p>©️ 2025 All rights reserved. Coded by William Farré</p>
+      <p className="text-xs">
+        ©️ 2025 All rights reserved. Coded by William Farré
+      </p>
     </footer>
   );
 };
