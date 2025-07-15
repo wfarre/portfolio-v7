@@ -97,7 +97,7 @@ const Navbar = () => {
                 className={`${activeSection === link.id ? "opacity-100" : "opacity-75"} cursor-pointer hover:opacity-100 transition-all duration-300 uppercase`}
               >
                 <button
-                  className="cursor-pointer"
+                  className="cursor-pointer uppercase font-bold"
                   onClick={() => {
                     const smoother = getSmoother();
                     if (smoother) {

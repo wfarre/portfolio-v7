@@ -8,42 +8,42 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const images = [
   {
-    src: "/wazuka.jpg",
+    src: "/assets/images/wazuka.jpg",
     alt: "Travel Tower",
     posX: "translate-x-[75%] lg:translate-x-[150%]",
     zIndex: "-z-20",
     scale: "scale-90",
   },
   {
-    src: "/shimogamo.jpg",
+    src: "/assets/images/shimogamo.jpg",
     alt: "Travel Tower",
     posX: "translate-x-[-25%] lg:translate-x-[-50%]",
     zIndex: "z-10",
     scale: "scale-100",
   },
   {
-    src: "/tainan.jpg",
+    src: "/assets/images/tainan.jpg",
     alt: "Travel Tower",
     posX: "translate-x-[75%] lg:translate-x-[150%]",
     zIndex: "-z-20",
     scale: "scale-80",
   },
   {
-    src: "/nara_shika.jpg",
+    src: "/assets/images/nara_shika.jpg",
     alt: "Travel Tower",
     posX: "translate-x-[80%] lg:translate-x-[100%]",
     zIndex: "z-20",
     scale: "scale-100",
   },
   {
-    src: "/taipei_sunset.jpg",
+    src: "/assets/images/taipei_sunset.jpg",
     alt: "Travel Tower",
     posX: "translate-x-[0%]",
     zIndex: "-z-20",
     scale: "scale-100",
   },
   {
-    src: "/wazuka2.jpg",
+    src: "/assets/images/wazuka2.jpg",
     alt: "Travel Tower",
     posX: "translate-x-[50%]",
     zIndex: "z-40",
