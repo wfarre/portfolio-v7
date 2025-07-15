@@ -94,7 +94,7 @@ const Navbar = () => {
             return (
               <li
                 key={"link" + index}
-                className={`${activeSection === link.id ? "opacity-100" : "opacity-75"} cursor-pointer hover:opacity-100 transition-all duration-300`}
+                className={`${activeSection === link.id ? "opacity-100" : "opacity-75"} cursor-pointer hover:opacity-100 transition-all duration-300 uppercase`}
               >
                 <button
                   className="cursor-pointer"
