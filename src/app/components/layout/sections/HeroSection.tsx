@@ -87,7 +87,9 @@ const HeroSection = () => {
           type="file"
         />
       </div>
-      <Marquee />
+      <div aria-hidden={true}>
+        <Marquee />
+      </div>
     </section>
   );
 };

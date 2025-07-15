@@ -21,7 +21,13 @@ const Card = (props: CardProps) => {
   return (
     <article className="text-white">
       <div className=" aspect-video w-full relative rounded-2xl overflow-hidden group">
-        <Image alt="" className="" src={props.image} fill={true} sizes="100%" />
+        <Image
+          alt={props.title}
+          src={props.image}
+          fill={true}
+          height={1920}
+          width={969}
+        />
         <div className="relative h-full w-full opacity-0 group-hover:opacity-100 transition-all duration-300">
           <div
             style={{
