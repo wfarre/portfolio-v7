@@ -6,6 +6,8 @@ import { ScrollSmoother, ScrollTrigger, SplitText } from "gsap/all";
 import React, { useRef } from "react";
 import Marquee from "../../ui/Marquee";
 import LinkButton from "../../ui/LinkButton";
+import Button from "../../ui/Button";
+import { getSmoother } from "@/app/utils/smoother";
 
 gsap.registerPlugin(SplitText, ScrollTrigger, ScrollSmoother);
 
@@ -66,7 +68,18 @@ const HeroSection = () => {
         ref={buttonWrapper}
         className="flex gap-4 mt-10 items-center justify-center z-20"
       >
-        <LinkButton text="Say Hi!" styleType="primary" link="#contact" />
+        <Button
+          text="Say Hi!"
+          styleType="primary"
+          onClick={() => {
+            console.log("click");
+
+            const smoother = getSmoother();
+            if (smoother) {
+              smoother.scrollTo(`#contact`, true, "top top");
+            }
+          }}
+        />
         <LinkButton
           text="Download CV"
           styleType="secondary"

@@ -19,6 +19,7 @@ const Button = (props: Props) => {
   return (
     <>
       <button
+        onClick={props.onClick}
         className={`${commonStyle} ${
           props.styleType === "primary" && buttonPrimaryStyle
         } 

@@ -1,14 +1,46 @@
+"use client";
+import { getSmoother } from "@/app/utils/smoother";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import React, { useRef } from "react";
+import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
+import React, { useRef, useState } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+const sectionLinks: { id: string; title: string }[] = [
+  {
+    id: "about",
+    title: "About",
+  },
+  {
+    id: "projects",
+    title: "Projects",
+  },
+  {
+    id: "contact",
+    title: "Contact",
+  },
+];
 
 const Navbar = () => {
   const headerRef = useRef(null);
   const headerTitle = useRef(null);
   const navRef = useRef(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  useGSAP(() => {
+    const sections = ["about", "projects", "contact"];
+
+    sections.forEach((id) => {
+      ScrollTrigger.create({
+        trigger: `#${id}`,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => setActiveSection(id),
+        onEnterBack: () => setActiveSection(id),
+      });
+    });
+  }, []);
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -58,15 +90,26 @@ const Navbar = () => {
           ref={navRef}
           className="flex gap-2 md:gap-8 ml-auto text-xs uppercase font-bold md:text-base"
         >
-          <li className="opacity-75 hover:opacity-100 transition-all duration-300">
-            <a href="#about">About</a>
-          </li>
-          <li className="opacity-75 hover:opacity-100 transition-all duration-300">
-            <a href="#projects">Projects</a>
-          </li>
-          <li className="opacity-75 hover:opacity-100 transition-all duration-300">
-            <a href="#contact">Contact</a>
-          </li>
+          {sectionLinks.map((link, index) => {
+            return (
+              <li
+                key={"link" + index}
+                className={`${activeSection === link.id ? "opacity-100" : "opacity-75"} cursor-pointer hover:opacity-100 transition-all duration-300`}
+              >
+                <button
+                  className="cursor-pointer"
+                  onClick={() => {
+                    const smoother = getSmoother();
+                    if (smoother) {
+                      smoother.scrollTo(`#${link.id}`, true, "top top");
+                    }
+                  }}
+                >
+                  {link.title}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>
